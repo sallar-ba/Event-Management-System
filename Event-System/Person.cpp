@@ -25,6 +25,6 @@ void Person::printPerson()
 {
 	cout << "Name: " << this->Name << endl;
 	cout << "Age:  " << this->Age << endl;
-	cout << "DOB:  "; this->DOB.printDate(); cout << endl;
+	cout << "DOB:  "; this->DOB.printDate();
 }
 //--------------//

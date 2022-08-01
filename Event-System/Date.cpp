@@ -17,11 +17,12 @@ Date::Date(int Day, int Month, int Year)
 void Date::setDay(int Day) { this->Day = Day; }
 void Date::setMonth(int Month) { this->Month = Month; }
 void Date::setYear(int Year) { this->Year = Year; }
-void Date::setDate(int Day, int Month, int Year)
+void Date::setDate()
 {
-	this->Day = Day;
-	this->Month = Month;
-	this->Year = Year;
+	//Taking Input From User
+	cout << "Enter Day: "; cin >> this->Day; setDay(Day);
+	cout << "Enter Month: "; cin >> this->Month; setMonth(Month);
+	cout << "Enter Year: "; cin >> this->Year; setYear(Year);
 }
 //---------------------------------//
 int Date::getDay() { return this->Day; }

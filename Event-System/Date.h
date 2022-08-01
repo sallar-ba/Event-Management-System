@@ -18,7 +18,7 @@ public:
 	void setDay(int);
 	void setMonth(int);
 	void setYear(int);
-	void setDate(int, int, int);
+	void setDate();
 	//- Getters -//
 	int getDay();
 	int getMonth();
