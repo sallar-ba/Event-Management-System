@@ -52,7 +52,7 @@ void Team::deleteMember(int Key)
 	{
 		//If There are No Members
 		cerr << "No Members..." << endl;
-		exit(1);
+		exit(1);// Exiting With Error
 	}
 	else
 	{
@@ -94,4 +94,17 @@ void Team::printTeam()
 			cout << endl;
 		}
 	}
+}
+//----------------------------------------//
+void Team::printMemberByID(int ID)
+{
+	for (int i = 0; i < eventTeam.size(); i++)
+	{
+		if (eventTeam[i].getID() == ID)
+		{
+			eventTeam[i].printMember();
+			return;
+		}
+	}
+	cout << "MEMBER NOT FOUND..." << endl;
 }

@@ -17,6 +17,7 @@ public:
 	void setTeamName(string);
 	string getTeamName();
 	//--- Other Funcs... ---//
+	void printMemberByID(int);
 	bool searchMember(int);
 	void addMember();
 	void deleteMember(int);

@@ -1,4 +1,8 @@
 #include "Event.h"
+Event::Event()
+{
+	cout << "No Event..." << endl;
+}
 Event::Event(string eventName, Date eventDate)
 {
 	this->eventName = eventName;

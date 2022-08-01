@@ -12,6 +12,7 @@ private:
 public:
 	//-- Public Member Function Proototypes ---//
 	//--- CONSTRUCTORS --//
+	Event();
 	Event(string, Date);
 	Event(string, vector<Team>, Date);
 	Event(string, vector<Team>, Date, Time, Time);

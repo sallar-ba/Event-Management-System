@@ -1,24 +1,6 @@
 #include"Event.h"
 #include<conio.h>
-class Time
-{
-private:
-	int Hrs, Min, Sec;
-public:
-	Time();
-	Time(int, int, int);
-	//---- Setters ---//
-	void setHrs(int);
-	void setMins(int);
-	void setSecs(int);
 
-	//---- Getters ---//
-	int getHrs();
-	int getMins();
-	int getSecs();
-	
-	void printTime();	//Print Method
-};
 string Login()
 {
 	cout << "\nEnter Password (4 Digit): ";
@@ -37,31 +19,111 @@ string Login()
 int main()
 {
 	//Declaring Var.
-START:
 	int Choice = 1;
-	string password = "1234";
+	string password = "1234"; // Password
 
-	cout << "1. FOR LOGIN" << endl;
+	cout << "1. FOR LOGIN" << endl; 
 	cout << "2. FOR EXIT " << endl;
 	do 
 	{
-		cout << "\nChoice: ";	cin >> Choice;
+		cout << "\nChoice: ";	cin >> Choice; // Input
 		if (Choice == 1)
 		{
-			if (Login() == password)
+			if (Login() == password) // Checking Password
 			{
 				int L_choice = 0;
+				cout << "\n1. Press For Event Details..." << endl;
+				cout << "2. Press For Event Planning..." << endl;
 				do
 				{
-					cout << "\nChoice: ";
-					cin >> L_choice;
+					cout << "\nChoice: ";	cin >> L_choice; // Input
 					if (L_choice == 1)
 					{
-						cout << "1. Press For Event Details..." << endl;
+						Event E; // Creating an Object
+						E.printEvent(); // Calling Function
 					}
-					else
+					else if (L_choice == 2)
 					{
-						exit(1);
+						system("CLS");	//Clearing Screen
+						cout << "**** Welcome to Event Planning *****" << endl;
+						//Creating Object
+						Time startTime, endTime;
+						string eventName;
+						Date eventDate;
+						cout << "Enter Event Name: "; cin >> eventName; // Input Name
+						cout << "Enter Event Date: "; eventDate.setDate();
+						cout << "Enter Event Start Time: "; startTime.setTime(); // Calling Function
+						cout << "Enter Event End Time: "; endTime.setTime(); // Calling 
+						//------------------------------//
+						Event E(eventName, eventDate);
+						E.setStartTime(startTime);
+						E.setEndTime(endTime);
+						//------------------------------//
+						cout << "\n1. Press to Add Teams" << endl;
+						cout << "2. Press to Change Event Date" << endl;
+						int E_choice = 0;
+						do
+						{
+							cout << "Enter Choice: "; cin >> E_choice;
+							if (E_choice == 1)
+							{
+								string teamName = " ";
+								cout << "\nEnter Team Name: "; cin >> teamName;
+								Team T(teamName); // Creating Team Obj.
+								START:
+								cout << "\n\n1. Press to Add Member" << endl;
+								cout << "2. Press to Delete Member" << endl;
+								cout << "3. Press to Search Member" << endl;
+								cout << "4. Press to Display Team" << endl;
+								cout << "5. Press to Exit" << endl;
+								int M_choice = 0;
+								do
+								{
+									cout << "Choice: "; cin >> M_choice;
+									if (M_choice == 1)
+									{
+										int n = 0;
+										cout << "\nHow Many Members You Want To Add?: "; cin >> n;
+										for (int i = 0; i < n; i++)
+										{
+											T.addMember();
+										}
+										goto START;
+									}
+									else if (M_choice == 2)
+									{
+										int ID = 0;
+										cout << "\nEnter ID of the Member You Want to Delete: "; cin >> ID;
+										T.deleteMember(ID);
+										goto START;
+									}
+									else if (M_choice == 3)
+									{
+										int ID = 0;
+										cout << "\nEnter ID of the Member You Want to Search: "; cin >> ID;
+										T.printMemberByID(ID); // Using Search Algo.
+										goto START;
+									}
+									else if (M_choice == 4)
+									{
+										T.printTeam();
+										goto START;
+									}
+									else if (M_choice == 5)
+									{
+										cout << "\nThank You...." << endl;
+										exit(0);
+									}
+
+								} while (M_choice != 1 && M_choice != 2 && M_choice != 3 && M_choice != 4);
+								
+							}
+							else if (E_choice == 2)
+							{
+								eventDate.setDate();
+								cout << "Date Changed...." << endl;
+							}
+						} while (E_choice != 1 && E_choice != 2);
 					}
 				} while (L_choice != 1 && L_choice != 2);
 			}
@@ -72,49 +134,6 @@ START:
 			exit(0);
 		}		
 	} while (Choice != 1 && Choice != 2);
-	
-	
-	//TESTING
-	/*Member A1("CCC", 20, { 16, 9, 2002 },1, "CS", "Head");
-	Member A2("CCC", 20, { 16, 9, 2002 },2, "CS", "Head");
-	Member A3("CCC", 20, { 16, 9, 2002 },3, "CS", "Head");
-	
-	Member A4("EEE", 20, { 16, 9, 2002 },9, "CS", "Head");
-	Member A5("EEE", 20, { 16, 9, 2002 },1, "CS", "Head");
-	Member A6("EEE", 20, { 16, 9, 2002 },6, "CS", "Head");
-	
-	Member A7("AAA", 20, { 16, 9, 2002 },0, "CS", "Head");
-	Member A8("AAA", 20, { 16, 9, 2002 },11, "CS", "Head");
-	Member A9("AAA", 20, { 16, 9, 2002 },31, "CS", "Head");
-
-	vector<Member> Arr;
-	vector<Member> Arr1;
-	vector<Member> Arr2;
-	
-	Arr.push_back(A1);
-	Arr.push_back(A2);
-	Arr.push_back(A3);
-
-	Arr1.push_back(A4);
-	Arr1.push_back(A5);
-	Arr1.push_back(A6);
-	
-	Arr2.push_back(A7);
-	Arr2.push_back(A8);
-	Arr2.push_back(A9);
-
-	Team S1("Core-Team", Arr);
-	Team S2("Core-Team", Arr1);
-	Team S3("Core-Team", Arr2);
-
-	vector<Team> OO;
-	OO.push_back(S1);
-	OO.push_back(S2);
-	OO.push_back(S3);
-
-	Event E("CODEFEST",OO, { 1,1,1999});
-
-	E.printEvent();*/
 
 	system("PAUSE>0");
 	return 0;
