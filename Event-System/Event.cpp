@@ -11,6 +11,14 @@ Event::Event(string eventName, vector<Team> allTeams, Date eventDate)
 	this->allTeams = allTeams;
 	this->eventDate = eventDate;
 }
+Event::Event(string eventName, vector<Team> allTeams, Date eventDate, Time startTime, Time endTime)
+{
+	this->eventName = eventName;
+	this->allTeams = allTeams;
+	this->eventDate = eventDate;
+	this->startTime = startTime;
+	this->endTime = endTime;
+}
 //----------------------------------------//
 void Event::setEventDate(Date eventDate)
 {
@@ -26,51 +34,36 @@ void Event::setEventName(string eventName)
 Date Event::getEventDate() { return eventDate; }
 string Event::getEventName() { return eventName; }
 //---------------------------------------//
-void Event::addTeam()
-{
-	string teamName = " ";
-	int TeamNumber = 0;
-	cout << "Enter Team Name: "; cin >> teamName;
-	cout << "How Many Members You Want to Add to The Team?: ";
-	cin >> TeamNumber;
-	
-	Team T(teamName);
-	for (int i = 0; i < TeamNumber; i++)
-	{
-		T.addMember();
-	}
-
-	allTeams.push_back(T);
-}
-//---------------------------------------//
-void Event::deleteTeam(string teamName)
+void Event::printEvent()
 {
 	if (allTeams.empty())
 	{
-		cerr << "No Teams..." << endl;
-		exit(1);
+		cerr << "NO EVENTS YET...." << endl;
+		return;
 	}
 	else
 	{
+		cout << "Event Name: " << this->eventName << endl;
+		cout << "Event Date: "; this->eventDate.printDate();
+		cout << "Event Start Time: "; this->startTime.printTime();
+		cout << "Event End Time: "; this->endTime.printTime();
+
 		for (int i = 0; i < allTeams.size(); i++)
 		{
-			if (allTeams[i].getTeamName() == teamName)
-			{
-				allTeams.erase(allTeams.begin() + i);
-			}
+			allTeams[i].printTeam();
 		}
 	}
-	cerr << "Team Not Found..." << endl;
-	exit(1);
 }
 //---------------------------------------//
-void Event::printEvent()
+void Event::setStartTime(Time startTime)
 {
-	cout << "Event Name: " << this->eventName << endl;
-	cout << "Event Date: "; this->eventDate.printDate();
-	for (int i = 0; i < allTeams.size(); i++)
-	{
-		allTeams[i].printTeam();
-	}
+	this->startTime = startTime;
 }
-//---------------------------------------//
+void Event::setEndTime(Time endTime)
+{
+	this->endTime = endTime;
+}
+//------------------------------------//
+Time Event::getStartTime() { return this->startTime; }
+Time Event::getEndTime() { return this->endTime; }
+//-----------------------------------//
