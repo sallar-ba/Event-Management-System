@@ -1,8 +1,13 @@
 #include "Team.h"
 //---------------------------------//
-Team::Team(vector<Member> eventTeam)
+Team::Team(string teamName, vector<Member> eventTeam)
 {
+	this->teamName = teamName;
 	this->eventTeam = eventTeam;
+}
+Team::Team(string teamName)
+{
+	this->teamName = teamName;
 }
 //-----------------------------------//
 bool Team::searchMember(int ID)
@@ -65,8 +70,15 @@ void Team::deleteMember(int Key)
 	}	
 }
 //--------------------------------------------------------------//
+void Team::setTeamName(string teamName)
+{
+	this->teamName = teamName;
+}
+string Team::getTeamName() { return this->teamName; }
+//--------------------------------------------------------------//
 void Team::printTeam()
 {
+	cout << "\nTeam Name: " << this->teamName << endl;
 	if (eventTeam.empty())
 	{
 		//If There are No Members

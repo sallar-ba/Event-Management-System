@@ -1,23 +1,51 @@
-#include"Team.h"
+#include"Event.h"
 int main()
 {
-	Member A1("Sallar", 20, { 16, 9, 2002 },1, "CS", "Head");
-	Member A2("Bilal", 20, { 16, 9, 2002 },2, "CS", "Head");
-	Member A3("Ahmad", 20, { 16, 9, 2002 },3, "CS", "Head");
+
+	//TESTING
+	Member A1("CCC", 20, { 16, 9, 2002 },1, "CS", "Head");
+	Member A2("CCC", 20, { 16, 9, 2002 },2, "CS", "Head");
+	Member A3("CCC", 20, { 16, 9, 2002 },3, "CS", "Head");
+	
+	Member A4("EEE", 20, { 16, 9, 2002 },9, "CS", "Head");
+	Member A5("EEE", 20, { 16, 9, 2002 },1, "CS", "Head");
+	Member A6("EEE", 20, { 16, 9, 2002 },6, "CS", "Head");
+	
+	Member A7("AAA", 20, { 16, 9, 2002 },0, "CS", "Head");
+	Member A8("AAA", 20, { 16, 9, 2002 },11, "CS", "Head");
+	Member A9("AAA", 20, { 16, 9, 2002 },31, "CS", "Head");
 
 	vector<Member> Arr;
+	vector<Member> Arr1;
+	vector<Member> Arr2;
+	
 	Arr.push_back(A1);
 	Arr.push_back(A2);
 	Arr.push_back(A3);
 
-	Team S1(Arr);
+	Arr1.push_back(A4);
+	Arr1.push_back(A5);
+	Arr1.push_back(A6);
+	
+	Arr2.push_back(A7);
+	Arr2.push_back(A8);
+	Arr2.push_back(A9);
 
-	S1.printTeam();
 
 
-	S1.deleteMember(2);
+	Team S1("Core-Team", Arr);
+	Team S2("Core-Team", Arr1);
+	Team S3("Core-Team", Arr2);
 
-	S1.printTeam();
+	vector<Team> OO;
+	OO.push_back(S1);
+	OO.push_back(S2);
+	OO.push_back(S3);
+
+
+	Event E("CODEFEST",OO, { 1,1,1999});
+
+	E.printEvent();
 
 	return 0;
 }

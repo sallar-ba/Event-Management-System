@@ -5,11 +5,17 @@ class Team //Creating a Team Class
 {
 private:
 	//Private Data Member
+	string teamName;
 	vector<Member> eventTeam; // A Modifiable Array of Members
 public:
 	//-- Public Member Function Proototypes ---//
-	//--- CONSTRUCTOR --//
-	Team(vector<Member>);
+	//--- CONSTRUCTORS --//
+	Team(string);
+	Team(string, vector<Member>);
+
+	//-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-
+	void setTeamName(string);
+	string getTeamName();
 	//--- Other Funcs... ---//
 	bool searchMember(int);
 	void addMember();
