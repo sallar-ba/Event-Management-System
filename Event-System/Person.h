@@ -2,7 +2,7 @@
 #include"Date.h" // Including Date Lib
 class Person // Person Class
 {
-private:
+protected:
 	//Private Data Members
 	string Name;
 	int Age;
