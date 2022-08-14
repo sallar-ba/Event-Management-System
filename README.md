@@ -37,9 +37,13 @@ This Project Uses the Concepts of **Object Oriented Programming (OOP)** and STL
 
 
 ## Screenshots
-
+- Login
 ![Login](https://github.com/sallar-ba/Event-Management-System/blob/main/University-Event-Management-System/assets/Login_Start.PNG)
+- Password
 ![Password](https://github.com/sallar-ba/Event-Management-System/blob/main/University-Event-Management-System/assets/password.PNG)
+- After Login
 ![After Login](https://github.com/sallar-ba/Event-Management-System/blob/main/University-Event-Management-System/assets/after_login.PNG)
+- Mock
 ![Mock](https://github.com/sallar-ba/Event-Management-System/blob/main/University-Event-Management-System/assets/mock.PNG)
+- Exit
 ![Exit](https://github.com/sallar-ba/Event-Management-System/blob/main/University-Event-Management-System/assets/exit.PNG)
