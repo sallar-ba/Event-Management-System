@@ -8,6 +8,13 @@ Event::Event(string eventName, Date eventDate)
 	this->eventName = eventName;
 	this->eventDate = eventDate;
 }
+Event::Event(string eventName, Date eventDate, Time startTime, Time endTime)
+{
+	this->eventName = eventName;
+	this->eventDate = eventDate;
+	this->startTime = startTime;
+	this->endTime = endTime;
+}
 //----------------------------------------//
 Event::Event(string eventName, vector<Team> allTeams, Date eventDate)
 {
@@ -40,7 +47,7 @@ string Event::getEventName() { return eventName; }
 //---------------------------------------//
 void Event::printEvent()
 {
-	if (allTeams.empty())
+	if (allTeams.empty() && eventName == "" || eventName == " ")
 	{
 		cerr << "NO EVENTS YET...." << endl;
 		return;

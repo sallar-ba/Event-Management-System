@@ -14,6 +14,7 @@ public:
 	void setID(int);
 	void setDepartment(string);
 	void setDesignation(string);
+	Member addMember();
 	//Getter
 	int getID();
 	string getDepartment();

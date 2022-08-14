@@ -25,25 +25,13 @@ bool Team::searchMember(int ID)
 void Team::addMember()
 {
 	Member newMember;
-	// Initializing Variables
-	int ID = -1, Age = -1;
-	Date DOB = { 1, 1, 1999 }; // Object of Date Class
-	string Name = " ", Dep = " ", Des = " ";
+	int noOfMembers = 0;
+	cout << "Enter Number of Members: "; cin >> noOfMembers;
 	//+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
-	cout << "Enter New Member ID: "; cin >> ID;
-	newMember.setID(ID);
-	cout << "Enter New Member Name: "; cin >> Name;
-	newMember.setName(Name);
-	cout << "Enter New Member Age: "; cin >> Age;
-	newMember.setAge(Age);
-	cout << "Enter New Member Date of Birth: ";
-	DOB.setDate(); newMember.setDOB(DOB);
-	cout << "Enter New Member Department: "; cin >> Dep;
-	newMember.setDepartment(Dep);
-	cout << "Enter New Member Designation: "; cin >> Des;
-	newMember.setDesignation(Des);
-	//+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
-	eventTeam.push_back(newMember); // Storing Member in Array
+	for (int i = 0; i < noOfMembers; i++)
+	{
+		eventTeam.push_back(newMember.addMember()); // Storing Member in Array
+	}
 }
 //--------------------------------------------------------------//
 void Team::deleteMember(int Key)
@@ -78,8 +66,8 @@ string Team::getTeamName() { return this->teamName; }
 //--------------------------------------------------------------//
 void Team::printTeam()
 {
-	cout << "\nTeam Name: " << this->teamName << endl;
-	if (eventTeam.empty())
+	cout << "\nTeam Name: \"" << getTeamName() << "\"" << endl;
+	if (eventTeam.empty() && teamName == "" || teamName == " ")
 	{
 		//If There are No Members
 		cerr << "No Members..." << endl;

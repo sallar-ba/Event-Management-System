@@ -1,4 +1,5 @@
 #include "Time.h"
+#include<iomanip> // Input/Output Manipulation
 //---------------------------------//
 Time::Time()
 {
@@ -27,5 +28,5 @@ int Time::getSecs() { return this->Sec; }
 //------------------------------//
 void Time::printTime()
 {
-	cout << this->Hrs << ":" << this->Min << ":" << this->Sec << endl;
+	cout << setw(2) << setfill('0') << this->Hrs << ":" << setw(2) << setfill('0') << this->Min << ":" << setw(2) << setfill('0') << this->Sec << endl;
 }

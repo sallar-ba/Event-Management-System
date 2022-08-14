@@ -1,27 +1,139 @@
-#include"Event.h"
-#include<conio.h>
-
+#include"Event.h" // Adding Event Header
+#include<conio.h> //For _getch()
+//------------------------------------------------------------------------------------------//
 string Login()
 {
+	system("CLS");
 	cout << "\nEnter Password (4 Digit): ";
 	string PASS = "";
 	char S;
 	for (int index = 1; index <= 4; index++)
 	{
-		S = _getch();
+		S = _getch(); //Getting a Character
 		PASS += S;
-		cout << "*";
+		cout << "*"; // And Printing '*' on Each Character Input
 	}
 	cout << endl;
-	return PASS;
+	return PASS; //Returning Password
 }
+//------------------------------------------------------------------------------------------//
+void Styling()
+{
+	int MAX_Row = 7, Max_Col = 15; // Defining Max Row and Col
+	cout << endl; // End line
+	for (int Row = 1; Row <= MAX_Row; Row++)  // For-Loop
+	{
+		cout << " ";//printing Space
+		for (int Col = 1; Col <= Max_Col; Col++)//For-Loop
+		{
+			//For Printing the Box
+			if (Row == 1 || Row == MAX_Row || Col == 1 || Col == Max_Col)
+			{
+				//Avoiding an Extra * At Printing Data Compression
+				if (Row == 4 && Col == Max_Col)
+				{
+					cout << " "; //Printing Nothing
+				}
+				else
+				{
+					//Printing *
+					cout << " * ";
+				}
+			}
+			//For Printing University Management System
+			/*
+				** Change Only This (Modify This) and use in Your Program.
+			*/
+			else if (Row == 4 && Col == 3)
+			{
+				//Printing University Management System
+				cout << "University Event Management System" << "   *"; // Last *
+			}
+			else
+			{
+				cout << "   ";//Printing Spaces
+			}
+		}
+		cout << "\n";//Next Line
+	}
+	cout << endl << endl;
+}
+//---------------------------------------------------------------------------------------------------------//
 
+void mockEvent()
+{
+	/*
+	Mock Objects And variables
+	*/
+	Time startTime(9, 0, 0), endTime(21, 0, 0);
+	// Core-Team
+	vector<Member> Arr;
+	Arr.push_back({ "Sallar", 18, { 16, 9, 2002 }, 1, "CS", "Head of Event" });
+	Arr.push_back({ "Arianna", 17, { 9, 8, 2003 }, 9, "BBA", "Accounts" });
+	//--------------------------------------------------------//
+	// On-Site Faculty
+	vector<Member> Teachers;
+	Arr.push_back({ "Kim", 19, { 19, 7, 2001 }, 2, "CS", "Production" });
+	Arr.push_back({ "Alicia", 17, { 16, 4, 2003 }, 3, "Media", "Social/Graphics" });
+	//--------------------------------------------------------//
+	Team T("Core-Team", Arr);
+	Team T1("Faculty-Team", Teachers);
+
+	//Mock Team Object - Contains 2 Teams
+	vector<Team> team;
+	team.push_back(T);
+	team.push_back(T1);
+
+	// Event Object
+	Event E("Christmas Celebration",team, {25, 12, 2022}, startTime, endTime);
+
+	system("CLS");
+	E.printEvent(); // Printing Mock Event
+}
+//---------------------------------------------------------------------------------------------------------//
+
+void exitingProgram()
+{
+	system("CLS");
+	Styling(); // Function Call
+	cout << "\nThank You For Using The Program...\n";
+	exit(0);
+}
+//---------------------------------------------------------------------------------------------------------//
+
+void newEvent()
+{
+	string eventName; cout << "Enter Event Name: "; cin >> eventName;
+	cout << "\nEnter Event Date: ";
+	Date eventDate; eventDate.setDate();
+	Time startTime, endTime; cout << "\nEnter Start Time: "; startTime.setTime();
+	cout << "\nEnter End Time:  "; endTime.setTime();
+	int teamsCount = 0;
+	cout << "How Many Teams You Want to Create?: "; cin >> teamsCount;
+	vector<Team> T;
+	T.reserve(teamsCount);
+	for (int i = 0; i < teamsCount; i++)
+	{
+		string teamName; cout << "Enter Team Name: "; cin >> teamName;
+		Team team(teamName);
+		team.addMember();
+		T.push_back(team);
+	}
+	Event E(eventName, T, eventDate, startTime, endTime);
+	system("CLS");
+	E.printEvent();
+}
+//---------------------------------------------------------------------------------------------------------//
 int main()
 {
+	Styling(); // Function Call
 	//Declaring Var.
-	int Choice = 1;
+	int Choice;
+	/*
+		Set Password Below.
+	*/
 	string password = "1234"; // Password
-
+	//---------------------------------------//
 	cout << "1. FOR LOGIN" << endl;
 	cout << "2. FOR EXIT " << endl;
 	do
@@ -29,112 +141,77 @@ int main()
 		cout << "\nChoice: ";	cin >> Choice; // Input
 		if (Choice == 1)
 		{
-			if (Login() == password) // Checking Password
+			string Pass;
+			do
 			{
-				int L_choice = 0;
-				cout << "\n1. Press For Event Details..." << endl;
-				cout << "2. Press For Event Planning..." << endl;
-				do
+				Pass = Login();
+				if (Pass == password) // Checking Password
 				{
-					cout << "\nChoice: ";	cin >> L_choice; // Input
-					if (L_choice == 1)
+				LOGIN:
+					system("CLS");
+					Styling(); // Function Call
+					cout << "\nYou've Logged In Successfully...\n";
+					cout << "\nPress 1 to See any Previous Planned Event.\n";
+					cout << "Press 2 to Add an Event.\n";
+					cout << "Press 3 to Exit.\n";
+					int LoginChoice;
+					do
 					{
-						Event E; // Creating an Object
-						E.printEvent(); // Calling Function
-					}
-					else if (L_choice == 2)
-					{
-						system("CLS");	//Clearing Screen
-						cout << "**** Welcome to Event Planning *****" << endl;
-						//Creating Object
-						Time startTime, endTime;
-						string eventName;
-						Date eventDate;
-						cout << "Enter Event Name: "; cin >> eventName; // Input Name
-						cout << "Enter Event Date: "; eventDate.setDate();
-						cout << "Enter Event Start Time: "; startTime.setTime(); // Calling Function
-						cout << "Enter Event End Time: "; endTime.setTime(); // Calling 
-						//------------------------------//
-						Event E(eventName, eventDate);
-						E.setStartTime(startTime);
-						E.setEndTime(endTime);
-						//------------------------------//
-						cout << "\n1. Press to Add Teams" << endl;
-						cout << "2. Press to Change Event Date" << endl;
-						int E_choice = 0;
-						do
+						cout << "\nChoice: "; cin >> LoginChoice;
+						if (LoginChoice == 1)
 						{
-							cout << "Enter Choice: "; cin >> E_choice;
-							if (E_choice == 1)
+							mockEvent();
+							cout << "\nPress 1 to Add Another Event.\n";
+							cout << "Press 2 to Exit.\n";
+							int mockChoice = 1;
+							do
 							{
-								string teamName = " ";
-								cout << "\nEnter Team Name: "; cin >> teamName;
-								Team T(teamName); // Creating Team Obj.
-							START:
-								cout << "\n\n1. Press to Add Member" << endl;
-								cout << "2. Press to Delete Member" << endl;
-								cout << "3. Press to Search Member" << endl;
-								cout << "4. Press to Display Team" << endl;
-								cout << "5. Press to Exit" << endl;
-								int M_choice = 0;
-								do
+								cout << "\nChoice: "; cin >> mockChoice;
+								if (mockChoice == 1)
 								{
-									cout << "Choice: "; cin >> M_choice;
-									if (M_choice == 1)
-									{
-										int n = 0;
-										cout << "\nHow Many Members You Want To Add?: "; cin >> n;
-										for (int i = 0; i < n; i++)
-										{
-											T.addMember();
-										}
-										goto START;
-									}
-									else if (M_choice == 2)
-									{
-										int ID = 0;
-										cout << "\nEnter ID of the Member You Want to Delete: "; cin >> ID;
-										T.deleteMember(ID);
-										goto START;
-									}
-									else if (M_choice == 3)
-									{
-										int ID = 0;
-										cout << "\nEnter ID of the Member You Want to Search: "; cin >> ID;
-										T.printMemberByID(ID); // Using Search Algo.
-										goto START;
-									}
-									else if (M_choice == 4)
-									{
-										T.printTeam();
-										goto START;
-									}
-									else if (M_choice == 5)
-									{
-										cout << "\nThank You...." << endl;
-										exit(0);
-									}
-
-								} while (M_choice != 1 && M_choice != 2 && M_choice != 3 && M_choice != 4);
-
-							}
-							else if (E_choice == 2)
-							{
-								eventDate.setDate();
-								cout << "Date Changed...." << endl;
-							}
-						} while (E_choice != 1 && E_choice != 2);
-					}
-				} while (L_choice != 1 && L_choice != 2);
-			}
+									newEvent();
+									_getch();
+									goto LOGIN;
+								}
+								else if (mockChoice == 2)
+								{
+									exitingProgram();
+								}
+							} while (mockChoice != 1 && mockChoice != 2);
+						}
+						else if (LoginChoice == 2)
+						{
+							newEvent();
+							_getch();
+							goto LOGIN;
+						}
+						else if (LoginChoice == 3)
+						{
+							exitingProgram();
+						}
+					} while (LoginChoice != 1 && LoginChoice != 2 && LoginChoice != 3);
+				}
+			} while (Pass != password);
 		}
 		else if (Choice == 2)
 		{
-			cout << "\nThank You For Using the Program..." << endl;
-			exit(0);
+			exitingProgram();
 		}
 	} while (Choice != 1 && Choice != 2);
+
+	/*
+	
+	Can Add More Functionality Like
+		- Adding More Members 
+		- Deleting Members
+		- Finding Members	
+
+		(P.S: Not Added Here)
+	*/
+
+
 
 	system("PAUSE>0");
 	return 0;
 }
+//---------------------------------------------------------------------------------------------------------//
