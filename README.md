@@ -36,9 +36,5 @@ This Project Uses the Concepts of **Object Oriented Programming (OOP)** and STL
 [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/sallar-ba/)
 
 
-## Screenshots
+## Screenshot
 ![Login](https://github.com/sallar-ba/Event-Management-System/blob/main/University-Event-Management-System/assets/Login_Start.PNG)
-![Password](https://github.com/sallar-ba/Event-Management-System/blob/main/University-Event-Management-System/assets/password.PNG)
-![After Login](https://github.com/sallar-ba/Event-Management-System/blob/main/University-Event-Management-System/assets/after_login.PNG)
-![Mock](https://github.com/sallar-ba/Event-Management-System/blob/main/University-Event-Management-System/assets/mock.PNG)
-![Exit](https://github.com/sallar-ba/Event-Management-System/blob/main/University-Event-Management-System/assets/exit.PNG)
